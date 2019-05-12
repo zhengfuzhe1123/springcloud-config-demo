@@ -1,0 +1,95 @@
+spring:
+  profiles:
+    active:
+    - dev
+
+---
+server: 
+  port: 8001
+  
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.mi.springcloud.entities    # 所有Entity别名类所在包
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件
+  
+spring:
+   profile: dev
+   application:
+    name: microservicecloud-config-provider-dept 
+   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://localhost:3306/cloudDB01              # 数据库名称
+    username: root
+    password: mickey
+    dbcp2:
+      min-idle: 5                                           # 数据库连接池的最小维持连接数
+      initial-size: 5                                       # 初始化连接数
+      max-total: 5                                          # 最大连接数
+      max-wait-millis: 200                                  # 等待连接获取的最大超时时间
+      
+eureka:
+  instance:
+    instance-id: microservicecloud-dept8001 # 自定义服务器名称信息
+    prefer-ip-address: true #访问路径可以显示IP地址
+  client: 
+    service-url: 
+      #defaultZone: http://localhost:7001/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka/
+      
+info: 
+  app.name: microservice-dept8001
+  company.name: www.mi.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+  
+  
+swagger2: 
+  enabled: true
+
+
+---
+server: 
+  port: 8001
+  
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.mi.springcloud.entities    # 所有Entity别名类所在包
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件
+  
+spring:
+   profile: test
+   application:
+    name: microservicecloud-config-provider-dept
+   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://localhost:3306/cloudDB02              # 数据库名称
+    username: root
+    password: mickey
+    dbcp2:
+      min-idle: 5                                           # 数据库连接池的最小维持连接数
+      initial-size: 5                                       # 初始化连接数
+      max-total: 5                                          # 最大连接数
+      max-wait-millis: 200                                  # 等待连接获取的最大超时时间
+      
+eureka:
+  instance:
+    instance-id: microservicecloud-dept8001 # 自定义服务器名称信息
+    prefer-ip-address: true #访问路径可以显示IP地址
+  client: 
+    service-url: 
+      #defaultZone: http://localhost:7001/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka/
+      
+info: 
+  app.name: microservice-dept8001
+  company.name: www.mi.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+  
+  
+swagger2: 
+  enabled: true
